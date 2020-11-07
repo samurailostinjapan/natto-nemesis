@@ -1,52 +1,96 @@
-#!/bin/bash
-#set -e
-###############################################################################
-# Title	:	ArchLinux Install Script
-# Author: 	Natto
-###############################################################################
-#
-#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
-#
-###############################################################################
-
 echo
 echo "###############################################################################"
-echo "Adding bash-completions"
+echo "Setting Timezone with Symlink"
 echo "###############################################################################"
 echo
-		pacman -S bash-completions
+		ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 echo
 echo "###############################################################################"
-echo "Creating User Account for Natto"
+echo "Setting Hardware clock"
 echo "###############################################################################"
 echo
-		useradd -m -g users -G audio,video,network,wheel,storage,rfkill -s /bin/bash natto
+		hwclock --systohc --utc
 echo
 echo "###############################################################################"
-echo "Setting Natto Password"
+echo "Setting Locale"
 echo "###############################################################################"
 echo
-		echo -e "cangetin\ncangetin" | passwd natto
+		sed -i 's/^#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 echo
 echo "###############################################################################"
-echo "Adding Wheel to SUDOERS"
+echo "Generating Locale"
 echo "###############################################################################"
 echo
-		sed -i 's/^# %wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL/' /etc/sudoers
+		locale-gen
 echo
 echo "###############################################################################"
-echo "Installing Xorg"
+echo "Add LANG Variable to Locale.conf"
 echo "###############################################################################"
 echo
-		pacman -S xorg-server xorg-apps xorg-xinit xterm
+		echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo
 echo "###############################################################################"
-echo "Installing Video Driver for Intel"
+echo "Setting Hostname"
 echo "###############################################################################"
 echo
-		pacman -S xf86-video-intel
+		echo "archtest" > /etc/hostname
 echo
 echo "###############################################################################"
-echo "                "Finished - Please REBOOT your computer"                   ####"
+echo "Setting Hosts file"
+echo "###############################################################################"
+echo
+		echo "127.0.0.1		localhost" >> /etc/hosts
+		echo "::1			localhost" >> /etc/hosts
+echo
+echo "###############################################################################"
+echo "Installing NetworkManager"
+echo "###############################################################################"
+echo
+		pacman -S networkmanager
+echo
+echo "###############################################################################"
+echo "Enabling NetworkManager"
+echo "###############################################################################"
+echo
+		systemctl enable NetworkManager
+echo
+echo "###############################################################################"
+echo "Set Root Password"
+echo "###############################################################################"
+echo
+		echo -e "cangetin\ncangetin" | passwd root
+echo
+echo "###############################################################################"
+echo "Installing BootLoader"
+echo "###############################################################################"
+echo
+		pacman -S grub efibootmgr
+echo
+echo "###############################################################################"
+echo "Grub Install"
+echo "###############################################################################"
+echo
+		grub-install --target=x86_64-efi --efi-directory=/boot/efi
+echo
+echo "###############################################################################"
+echo "Configuring Grub"
+echo "###############################################################################"
+echo
+		grub-mkconfig -o /boot/grub/grub.cfg
+echo
+echo "###############################################################################"
+echo "Leaving Arch-Chroot"
+echo "###############################################################################"
+echo
+		exit
+echo
+echo "###############################################################################"
+echo "Umounting /mnt"
+echo "###############################################################################"
+echo
+		umount -R /mnt
+echo
+echo "###############################################################################"
+echo "Finished "
 echo "###############################################################################"
 echo
