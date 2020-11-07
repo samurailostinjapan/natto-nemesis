@@ -46,7 +46,7 @@ echo "##########################################################################
 echo "Installing NetworkManager"
 echo "###############################################################################"
 echo
-		pacman -S networkmanager
+		pacman -S networkmanager --noconfirm
 echo
 echo "###############################################################################"
 echo "Enabling NetworkManager"
@@ -64,7 +64,7 @@ echo "##########################################################################
 echo "Installing BootLoader"
 echo "###############################################################################"
 echo
-		pacman -S grub efibootmgr
+		pacman -S grub efibootmgr --noconfirm
 echo
 echo "###############################################################################"
 echo "Grub Install"

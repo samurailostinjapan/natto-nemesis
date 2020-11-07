@@ -14,7 +14,7 @@ echo "##########################################################################
 echo "Adding bash-completions"
 echo "###############################################################################"
 echo
-		pacman -S bash-completions
+		pacman -S bash-completion --noconfirm
 echo
 echo "###############################################################################"
 echo "Creating User Account for Natto"
@@ -38,13 +38,13 @@ echo "##########################################################################
 echo "Installing Xorg"
 echo "###############################################################################"
 echo
-		pacman -S xorg-server xorg-apps xorg-xinit xterm
+		pacman -S xorg-server xorg-apps xorg-xinit xterm --noconfirm
 echo
 echo "###############################################################################"
 echo "Installing Video Driver for Intel"
 echo "###############################################################################"
 echo
-		pacman -S xf86-video-intel
+		pacman -S xf86-video-intel --noconfirm
 echo
 echo "###############################################################################"
 echo "                "Finished - Please REBOOT your computer"                   ####"

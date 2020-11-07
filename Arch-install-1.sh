@@ -98,7 +98,7 @@ echo "##########################################################################
 echo "Installing Base packages"
 echo "###############################################################################"
 echo
-		pacstrap /mnt base base-devel linux linux-firmware nano
+		pacstrap /mnt base base-devel linux linux-firmware nano pacman --noconfirm
 echo
 echo "###############################################################################"
 echo "Generating FSTAB"
