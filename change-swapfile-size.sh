@@ -14,50 +14,27 @@
 #
 ###############################################################################
 
-echo
-echo "###############################################################################"
-echo "CHANGING SWAPFILE SIZE"
-echo "###############################################################################"
-echo
-echo "###############################################################################"
-echo "Turning off current swapfile"
-echo "###############################################################################"
-echo
-sudo swapoff /swapfile
-echo
-echo "###############################################################################"
-echo "Removing current swapfile"
-echo "###############################################################################"
-echo
-sudo rm -f /swapfile
-echo
-echo "###############################################################################"
-echo "##Making new swapfile" ##"Change count to desired swapfile size in mb"
-echo "###############################################################################"
-echo
-sudo dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
-echo
-echo "###############################################################################"
-echo "Changing permissions on swapfile"
-echo "###############################################################################"
-echo
-sudo chmod 600 /swapfile
-echo
-echo "###############################################################################"
-echo "Formating swapfile"
-echo "###############################################################################"
-echo
-sudo mkswap /swapfile
-echo
-echo "###############################################################################"
-echo "Activating swapfile"
-echo "###############################################################################"
-echo
-sudo swapon /swapfile
-echo
-echo "###############################################################################"
-echo "                            "Finished - Please REBOOT your computer"                                        ####"
-echo "###############################################################################"
-echo
+	echo "CHANGING SWAPFILE SIZE"
+
+	#Turning off current swapfile
+		sudo swapoff /swapfile
+
+ 	# Removing current swapfile
+		sudo rm -f /swapfile
+
+	# ##Making new swapfile" ##"Change count to desired swapfile size in mb
+		sudo dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
+
+	# Changing permissions on swapfile"
+		sudo chmod 600 /swapfile
+
+	# Formating swapfile
+		sudo mkswap /swapfile
+
+ 	# Activating swapfile
+		sudo swapon /swapfile
+
+	echo "Finished - REBOOT!"
+
 
 

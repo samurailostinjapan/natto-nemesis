@@ -8,99 +8,55 @@
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
 #
 ###############################################################################
-echo
-echo "###############################################################################"
-echo "Setting Timezone with Symlink"
-echo "###############################################################################"
-echo
+
+	# Setting Timezone with Symlink
 		ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-echo
-echo "###############################################################################"
-echo "Setting Hardware clock"
-echo "###############################################################################"
-echo
+
+	# Setting Hardware clock
 		hwclock --systohc --utc
-echo
-echo "###############################################################################"
-echo "Setting Locale"
-echo "###############################################################################"
-echo
+
+ 	# Setting Locale
 		sed -i 's/^#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
-echo
-echo "###############################################################################"
-echo "Generating Locale"
-echo "###############################################################################"
-echo
+
+ 	# Generating Locale
 		locale-gen
-echo
-echo "###############################################################################"
-echo "Add LANG Variable to Locale.conf"
-echo "###############################################################################"
-echo
+
+ 	# Add LANG Variable to Locale.conf
 		echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo
-echo "###############################################################################"
-echo "Setting Hostname"
-echo "###############################################################################"
-echo
+
+ 	# Setting Hostname
 		echo "archtest" > /etc/hostname
-echo
-echo "###############################################################################"
-echo "Setting Hosts file"
-echo "###############################################################################"
-echo
-		echo "127.0.0.1		localhost" >> /etc/hosts
-		echo "::1			localhost" >> /etc/hosts
-echo
-echo "###############################################################################"
-echo "Installing NetworkManager"
-echo "###############################################################################"
-echo
+
+ 	# Setting Hosts file
+
+		echo -e "127.0.0.1 localhost\n::1 localhost" >> /etc/hosts
+
+ 	# Installing NetworkManager
 		pacman -S networkmanager --noconfirm
-echo
-echo "###############################################################################"
-echo "Enabling NetworkManager"
-echo "###############################################################################"
-echo
+
+ 	# Enabling NetworkManager
 		systemctl enable NetworkManager
-echo
-echo "###############################################################################"
-echo "Set Root Password"
-echo "###############################################################################"
-echo
+
+	# Set Root Password
 		echo -e "cangetin\ncangetin" | passwd root
-echo
-echo "###############################################################################"
-echo "Installing BootLoader"
-echo "###############################################################################"
-echo
+
+ 	# Installing BootLoader
 		pacman -S grub efibootmgr --noconfirm
-echo
-echo "###############################################################################"
-echo "Grub Install"
-echo "###############################################################################"
-echo
+
+ 	# Grub Install
 		grub-install --target=x86_64-efi --efi-directory=/boot/efi
-echo
-echo "###############################################################################"
-echo "Configuring Grub"
-echo "###############################################################################"
-echo
+
+	# Configuring Grub
 		grub-mkconfig -o /boot/grub/grub.cfg
-echo
-echo "###############################################################################"
-echo "Leaving Arch-Chroot"
-echo "###############################################################################"
-echo
+
+  	# Leaving Arch-Chroot
 		echo "exit"
-echo
-echo "###############################################################################"
-echo "Umounting /mnt"
-echo "###############################################################################"
-echo
+
+ 	# Umounting /mnt
 		echo "umount -R /mnt"
-echo
-echo "###############################################################################"
-echo "Finished "
-echo "###############################################################################"
-echo
+
+	# Exiting
+		echo "exit"
+
+ 	echo "Finished - Reboot!"
+

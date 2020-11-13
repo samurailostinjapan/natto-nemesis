@@ -9,44 +9,22 @@
 #
 ###############################################################################
 
-echo
-echo "###############################################################################"
-echo "Adding bash-completions"
-echo "###############################################################################"
-echo
+	# Adding bash-completions
 		pacman -S bash-completion --noconfirm
-echo
-echo "###############################################################################"
-echo "Creating User Account for Natto"
-echo "###############################################################################"
-echo
+
+	# Creating User Account for Natto
 		useradd -m -g users -G audio,video,network,wheel,storage,rfkill -s /bin/bash natto
-echo
-echo "###############################################################################"
-echo "Setting Natto Password"
-echo "###############################################################################"
-echo
+
+ 	# Setting Natto Password
 		echo -e "cangetin\ncangetin" | passwd natto
-echo
-echo "###############################################################################"
-echo "Adding Wheel to SUDOERS"
-echo "###############################################################################"
-echo
+
+ 	# Adding Wheel to SUDOERS
 		sed -i 's/^# %wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) ALL/' /etc/sudoers
-echo
-echo "###############################################################################"
-echo "Installing Xorg"
-echo "###############################################################################"
-echo
+
+ 	# Installing Xorg
 		pacman -S xorg-server xorg-apps xorg-xinit xterm --noconfirm
-echo
-echo "###############################################################################"
-echo "Installing Video Driver for Intel"
-echo "###############################################################################"
-echo
+
+ 	# Installing Video Driver for Intel
 		pacman -S xf86-video-intel --noconfirm
-echo
-echo "###############################################################################"
-echo "                "Finished - Please REBOOT your computer"                   ####"
-echo "###############################################################################"
-echo
+
+	echo "Finished install ArchLinux- REBOOT!" 
