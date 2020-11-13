@@ -42,7 +42,7 @@ get_icon() {
         #50n) icon="";;
         #*) icon="";
         
-KEY="7165d974a5bed77c419b48028df2c936"
+
 CITY="2507480"
 UNITS="metric"
 SYMBOL="°"
