@@ -7,14 +7,10 @@ echo "################################################################"
 
 echo "Installing Fcitx"
 
-sudo pacman -S fcitx5 --noconfirm --needed
-sudo pacman -S fcitx5-configtool --noconfirm --needed
-sudo pacman -S fcitx5-gtk --noconfirm --needed
-sudo pacman -S fcitx5-qt5 --noconfirm --needed
+sudo pacman -S fcitx5-im --noconfirm --needed
+sudo pacman -S fcitx5-mozc --noconfirm --needed
 sudo pacman -S fcitx5-rime --noconfirm --needed
-sudo yay -S fcitx-arc-git --noconfirm --needed
-sudo yay -S fcitx5-mozc --noconfirm --needed
-sudo yay -S fcitx-arc-theme --noconfirm --needed
+yay -S fcitx5-skin-arc --noconfirm --needed
 
 echo "Adding xprofile to home direcotry"
 homedir=$( getent passwd "$USER" | cut -d: -f6 )
@@ -34,3 +30,11 @@ EOT
 echo "################################################################"
 echo "#########            DONE!           ################"
 echo "################################################################"
+
+
+#NO Longer needed but keeping for reference
+#sudo pacman -S fcitx5 --noconfirm --needed
+#sudo pacman -S fcitx5-configtool --noconfirm --needed
+#sudo pacman -S fcitx5-gtk --noconfirm --needed
+#sudo pacman -S fcitx5-qt5 --noconfirm --needed
+#yay -S fcitx5-arc-git --noconfirm --needed
