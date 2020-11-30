@@ -14,6 +14,7 @@ sudo pacman -S fcitx5-qt5 --noconfirm --needed
 sudo pacman -S fcitx5-rime --noconfirm --needed
 sudo yay -S fcitx-arc-git --noconfirm --needed
 sudo yay -S fcitx5-mozc --noconfirm --needed
+sudo yay -S fcitx-arc-theme --noconfirm --needed
 
 echo "Adding xprofile to home direcotry"
 homedir=$( getent passwd "$USER" | cut -d: -f6 )
