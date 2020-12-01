@@ -150,9 +150,9 @@ function output() {
     volMuteStatus
     if [ "${curStatus}" = 'yes' ]
     then
-        echo "Vol: $curVol%"
+        echo "$curVol%"
     else
-        echo "Vol: $curVol%"
+        echo "$curVol%"
     fi
 } #}}}
 

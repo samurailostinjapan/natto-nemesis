@@ -4,10 +4,17 @@
 
 
  [ -z "$1" ] && icon="" || icon="$1"
- CPU=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
 
-    #echo "$icon  $CPU%"
-    echo "$CPU"
+CPU=$(top -b -n2 -p 1 \
+| fgrep "Cpu(s)" \
+| tail -1 \
+| awk -F'id,' -v prefix="$prefix" '{ split($1, vs, ","); \
+v=vs[length(vs)]; sub("%", "", v); \
+printf "%s%0.0f%%\n", prefix, 100 - v }')
+
+ echo "$CPU"
+
+      
 
 
-    
+
